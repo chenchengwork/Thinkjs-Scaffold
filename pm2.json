@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "thinkjs-Scaffold",
+    "script": "production.js",
+    "cwd": "/Users/chencheng/Desktop/data/personal/thinkjs-Scaffold",
+    "exec_mode": "fork",
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      
+    }
+  }]
+}
