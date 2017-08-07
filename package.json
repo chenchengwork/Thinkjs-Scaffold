@@ -27,15 +27,15 @@
     "eslint": "^4.2.0",
     "eslint-config-think": "^1.0.0"
   },
-"apidoc":{
-  "name": "example",
-  "version": "1.0.0",
-  "description": "apiDoc basic example",
   "apidoc": {
-    "title": "Custom apiDoc browser title",
-    "url" : "https://api.github.com/v1"
-  }
-},
+    "name": "example",
+    "version": "1.0.0",
+    "description": "apiDoc basic example",
+    "apidoc": {
+      "title": "Custom apiDoc browser title",
+      "url": "https://api.github.com/v1"
+    }
+  },
   "repository": "",
   "license": "MIT",
   "engines": {
