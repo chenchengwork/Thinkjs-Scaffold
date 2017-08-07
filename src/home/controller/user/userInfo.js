@@ -11,6 +11,8 @@ module.exports = class extends Base{
 	async indexAction(ctx){
 
 		console.log(think.config('workers'));
+		console.log(think.app.validators);
+		console.log(think.uuid('v1').length);
 
 		//文件上传
 		// const file = this.file('filename');
