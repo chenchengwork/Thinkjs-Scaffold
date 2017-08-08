@@ -37,13 +37,13 @@ exports.model = {
     logger: msg => think.logger.info(msg)
   },
   mysql: {
-    database: '',
-    prefix: 'think_',
+    database: 'Thinkjs-demo',
+    prefix: '',
     encoding: 'utf8',
     host: '127.0.0.1',
-    port: '',
+    port: '3306',
     user: 'root',
-    password: 'root',
+    password: '123456',
     dateStrings: true
   }
 };
