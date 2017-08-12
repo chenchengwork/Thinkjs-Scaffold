@@ -39,9 +39,11 @@ CREATE TABLE `users` (
 ### 二、实现接口
 1.注册
 ```
-URL:
+URL:http://localhost:8360/home/user/user/register
 
-method:
+method:POST
+
+content-type: application/json
 
 params:{
     userEmail:"cheng.chen@tianjishuju.com",

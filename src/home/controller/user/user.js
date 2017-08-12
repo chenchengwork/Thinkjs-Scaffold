@@ -5,10 +5,11 @@
 const Base = require('../base');
 const path = require('path');
 const fs = require('fs');
+const userService = require('../../services/userService');
 const rename = think.promisify(fs.rename, fs);
 
 module.exports = class extends Base{
-	async indexAction(ctx){
+	async indexAction(){
 
 		console.log(think.config('workers'));
 		console.log(think.app.validators);
@@ -23,6 +24,25 @@ module.exports = class extends Base{
 		// await rename(file.path, filepath);
 
 		this.body = "this is userInfo";
+	}
+
+    /**
+	 * 注册用户
+     * @returns {Promise.<void>}
+     */
+	async registerAction(){
+
+        let insertId = userService.register({
+            userEmail: 'cheng.chen@tianjishuju.com',
+            userName: 'chencheng',
+            password: '123456',
+            deletedAt:0,
+            createdAt: parseInt(Date.now()/1000),
+            updatedAt: parseInt(Date.now()/1000),
+        });
+
+        this.body = insertId;
+
 	}
 
 }
