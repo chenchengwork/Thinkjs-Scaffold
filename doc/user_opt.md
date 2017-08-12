@@ -15,7 +15,7 @@ CREATE TABLE accounts (
   createdAt bigint(11) unsigned NOT NULL,
   updatedAt bigint(11) unsigned NOT NULL,
   PRIMARY KEY (accountId)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 ```
 
@@ -31,7 +31,7 @@ CREATE TABLE `users` (
   `createdAt` bigint(11) unsigned NOT NULL,
   `updatedAt` bigint(11) unsigned NOT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 ```
 
