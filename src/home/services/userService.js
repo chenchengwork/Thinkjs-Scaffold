@@ -4,7 +4,9 @@
 
 class userService{
     constructor(){
-        this.userModel = think.model('user', think.config('model'));
+        console.log(think.app.models);
+
+        this.userModel = think.model('user', {}, "home");
     }
 
     async register(params){

@@ -5,7 +5,7 @@
 const Base = require('../base');
 const path = require('path');
 const fs = require('fs');
-const userService = require('../../services/userService');
+// const userService = require('../../services/userService');
 const rename = think.promisify(fs.rename, fs);
 
 module.exports = class extends Base{
@@ -31,17 +31,30 @@ module.exports = class extends Base{
      * @returns {Promise.<void>}
      */
 	async registerAction(){
+		// const userModel = this.model('user');
+		const userModel = think.model('user',{},"home");
 
-        let insertId = userService.register({
+        /*let insertId = userService.register({
             userEmail: 'cheng.chen@tianjishuju.com',
             userName: 'chencheng',
             password: '123456',
             deletedAt:0,
             createdAt: parseInt(Date.now()/1000),
             updatedAt: parseInt(Date.now()/1000),
-        });
+        });*/
 
-        this.body = insertId;
+        // this.body = insertId;
+
+		const userId = await userModel.add({
+			userEmail: 'cheng.chen@tianjishuju.com',
+			userName: 'chencheng',
+			password: '123456',
+			deletedAt:0,
+			createdAt: parseInt(Date.now()/1000),
+			updatedAt: parseInt(Date.now()/1000),
+		});
+
+        this.body = userId;
 
 	}
 
