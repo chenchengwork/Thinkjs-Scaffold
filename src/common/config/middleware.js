@@ -10,6 +10,8 @@ module.exports = [
 		requestTimeout:10 * 1000, //请求超时时间，单位是"秒"
     }
   },
+
+    //配置静态资源
   {
     handle: 'resource',
     enable: isDev,
@@ -35,6 +37,7 @@ module.exports = [
 		// uploadDir:path.join(think.ROOT_PATH,'storage/tmp/upload/')
     }
   },
+    //路由操作
   {
     handle: 'router',
     options: {}

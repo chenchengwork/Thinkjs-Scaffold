@@ -45,16 +45,19 @@ module.exports = class extends Base{
 
         // this.body = insertId;
 
-		const userId = await userModel.add({
+		/*const userId = await userModel.add({
 			userEmail: 'cheng.chen@tianjishuju.com',
 			userName: 'chencheng',
 			password: '123456',
 			deletedAt:0,
 			createdAt: parseInt(Date.now()/1000),
 			updatedAt: parseInt(Date.now()/1000),
-		});
+		});*/
 
-        this.body = userId;
+		// let content = await think.service('test').get();
+		let content = await think.service('test','home').get();
+
+        this.body = content;
 
 	}
 

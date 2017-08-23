@@ -1,7 +1,7 @@
 // default config
 module.exports = {
-	port: 8360, // server port
-	host: '127.0.0.1', // server host
+	port: 8360, 			// 服务端口号
+	host: '127.0.0.1', 		// server host
 	workers: 1, // server workers num, if value is 0 then get cpus num
 	createServer: undefined, // create server function
 	startServerTimeout: 3000, // before start server time
