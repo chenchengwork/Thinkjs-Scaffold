@@ -12,8 +12,8 @@ module.exports = {
 	enableAgent: false, // enable agent worker
 	jsonpCallbackField: 'callback', // jsonp callback field
 	jsonContentType: 'application/json', // json content type
-	errnoField: 'errno', // errno field
-	errmsgField: 'errmsg', // errmsg field
-	defaultErrno: 1000, // default errno
+	errnoField: 'code', // errno field
+	errmsgField: 'msg', // errmsg field
+	defaultErrno: 'error', // default errno
 	validateDefaultErrno: 1001 // validate default errno
 };

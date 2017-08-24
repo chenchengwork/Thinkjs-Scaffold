@@ -4,4 +4,8 @@ module.exports = class extends think.Model {
         this.tableName = 'users';
         this.pk = 'userId'; //设置唯一主键
     }
+
+    insert(){
+
+    }
 };
