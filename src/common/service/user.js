@@ -28,7 +28,6 @@ module.exports = class extends think.Service{
 		})
 
 		return await this.modelInstance.add(params).catch(err => {
-			console.log(11111)
 			return think.isError(err) ? err : new Error(err)
 		});
 	}

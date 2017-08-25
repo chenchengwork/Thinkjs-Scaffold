@@ -33,14 +33,15 @@ module.exports = class extends Base{
 		const { userEmail, userName, password } = this.post();
 
 		const result = await think.service('user').register({ userEmail, userName, password });
-
+		// console.log(result);
+		// this.ctx.throw(500,result);
 
 		if (think.isError(result)) {
 			// 这里将错误信息返回，或者返回格式化后的错误信息也都可以
-			return this.fail(1000, result.message);
+			return this.fail(result.message);
 		}
 
-        this.body = userId;
+        this.body = result;
 
 	}
 
