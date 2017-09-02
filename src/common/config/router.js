@@ -1,3 +1,3 @@
 module.exports = [
-    [/^\/proxyEtl\/(.*)/i, '/proxy/thirdAPI', 'get'],
+    [/^\/proxyEtl\/(.*)/i, '/proxy/etlAPI', 'get'],
 ];

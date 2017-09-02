@@ -15,5 +15,14 @@ module.exports = {
 	errnoField: 'code', // errno field
 	errmsgField: 'msg', // errmsg field
 	defaultErrno: 'error', // default errno
-	validateDefaultErrno: 1001 // validate default errno
+	validateDefaultErrno: 1001, // validate default errno
+
+
+	/*
+	 |-------------------------------------------------------------------
+	 | 以下是自定义配置
+	 |-------------------------------------------------------------------
+	 */
+	proxyEtlHost:"http://10.0.3.179:9090",	//代理ETL服务的主机端口
+
 };
