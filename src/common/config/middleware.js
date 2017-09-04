@@ -3,6 +3,14 @@ const isDev = think.env === 'development';
 
 module.exports = [
     {
+        handle: 'cors',
+        options:{
+            origin:"http://localhost:8180", //允许跨域的域名
+            credentials:true,               //允许携带跨域的cookie
+        },
+    },
+
+    {
         handle: 'meta',
         options: {
             logRequest: isDev,
@@ -54,6 +62,7 @@ module.exports = [
         handle: 'router',
         options: {}
     },
+
 
     //业务逻辑,数据验证
     'logic',
