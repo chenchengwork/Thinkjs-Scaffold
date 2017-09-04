@@ -1,6 +1,7 @@
 /**
  * Created by chencheng on 17-9-4.
  */
+
 'use strict';
 
 /**
@@ -63,12 +64,10 @@ module.exports =  (options) => {
         } else if (typeof options.origin === 'function') {
             origin = options.origin(ctx.request);
         }
-console.log(111123)
+
         if (origin === false) {
             return next();
         }
-
-        console.log(origin)
 
         ctx.set('Access-Control-Allow-Origin', origin);
 
