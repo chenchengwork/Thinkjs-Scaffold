@@ -45,4 +45,14 @@ module.exports = class extends Base{
 
 	}
 
+    /**
+	 * 测试文件上传
+     * @returns {Promise.<void>}
+     */
+	async testUploadAction() {
+		console.log(this.ctx.post());
+
+		this.success(this.ctx.post())
+	}
+
 }

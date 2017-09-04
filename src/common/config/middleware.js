@@ -43,6 +43,9 @@ module.exports = [
             encoding: "utf-8",     //数据编码
             keepExtensions: true,  //是否保持上传文件的扩展
             // uploadDir:path.join(think.ROOT_PATH,'storage/tmp/upload/')
+            extendTypes:{
+                json:['text/plain']
+            }
         }
     },
 

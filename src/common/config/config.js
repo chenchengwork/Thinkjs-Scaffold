@@ -1,8 +1,8 @@
 // default config
 module.exports = {
 	port: 8360, 			// 服务端口号
-	host: '127.0.0.1', 		// server host
-	workers: 1, // server workers num, if value is 0 then get cpus num
+	host: '127.0.0.1', 		// 服务段主机地址
+	workers: 1, 			// 服务worker进程的数据量，如果为0则取所在主机的cpu数量作为worker进程的数据量
 	createServer: undefined, // create server function
 	startServerTimeout: 3000, // before start server time
 	reloadSignal: 'SIGUSR2', // reload process signal
@@ -23,6 +23,15 @@ module.exports = {
 	 | 以下是自定义配置
 	 |-------------------------------------------------------------------
 	 */
-	proxyEtlHost:"http://10.0.3.179:9090",	//代理ETL服务的主机端口
+	appModules:{
+		'web':"home",	//
+	},
 
+	proxy:{
+        proxyEtl:{
+            targetHost:"http://10.0.3.179:9090",        //目标主机
+            // targetHost:"http://localhost:8360",        //目标主机
+            prefix:'proxyEtl',                          //代理前缀
+        },
+    }
 };
