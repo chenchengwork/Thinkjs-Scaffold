@@ -1,7 +1,6 @@
 /**
  * Created by chencheng on 17-9-1.
  */
-const httpProxy = require('http-proxy');
 const queryString = require('querystring');
 const Base = require('./base');
 
