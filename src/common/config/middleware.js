@@ -45,7 +45,6 @@ module.exports = [
     //解析post参数
     {
         handle: 'payload',
-
         options: {
             limit: "8mb",          //限定post数据的大小
             encoding: "utf-8",     //数据编码
@@ -60,7 +59,9 @@ module.exports = [
     //路由操作
     {
         handle: 'router',
-        options: {}
+        options: {
+            defaultModule:'common',
+        }
     },
 
 

@@ -10,6 +10,7 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "form-data": "^2.3.1",
     "think-cache-file": "~1.0.8",
     "think-fetch": "^1.1.0",

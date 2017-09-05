@@ -4,6 +4,7 @@
 const { URLSearchParams } = require('url');
 const { createReadStream } = require('fs');
 const FormData = require('form-data');
+const axios = require('axios');
 
 module.exports = class extends think.Service{
 
@@ -61,7 +62,7 @@ module.exports = class extends think.Service{
 			//可能存在文件上传
 			else if(ctx.is('multipart/form-data')){
 
-                const form = new FormData();
+                /*const form = new FormData();
 
 				//加载文件参数
                 Object.keys(ctx.file()).map((fieldName) => {
@@ -77,7 +78,24 @@ module.exports = class extends think.Service{
                     .then(res => res.json())
                     .catch((e) => {
                         return e;
-                    });
+                    });*/
+
+                const fileNames = Object.keys(ctx.file())
+
+                return await axios({
+                    method: 'post',
+                    url:targetHost,
+                    headers: {
+                        "Content-Type": 'application/java-archive'
+                    },
+                    data: createReadStream(ctx.file(fileNames[0]).path)
+                }).then((resp) => {
+                    console.log(" upload success ")
+                }, (resp) => {
+                    console.log(resp)
+                })
+
+                return  111;
 
             }
 
