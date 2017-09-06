@@ -11,7 +11,7 @@ module.exports = class extends Base{
         if(status) {
             this.success(data);
         }else{
-            this.fail(data)
+            this.fail(500,JSON.stringify(data))
         }
     }
 
