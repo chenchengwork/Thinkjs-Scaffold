@@ -48,7 +48,7 @@ module.exports =  (options) => {
         options.headers = options.headers.join(',');
     }
 
-    return (ctx,next) => {
+    return  (ctx,next) => {
 
         /**
          * Access Control Allow Origin
@@ -115,7 +115,7 @@ module.exports =  (options) => {
         /**
          * Returns
          */
-        if (this.method === 'OPTIONS') {
+        if (ctx.method === 'OPTIONS') {
             ctx.status = 204;
         } else {
             return next();

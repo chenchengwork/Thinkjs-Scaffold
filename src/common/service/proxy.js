@@ -1,12 +1,12 @@
 /**
  * Created by chencheng on 2017/9/2.
  */
-const { URLSearchParams } = require('url');
-const { createReadStream } = require('fs');
-const FormData = require('form-data');
-const axios = require('axios');
-
 module.exports = class extends think.Service{
+
+    constructor(){
+        super();
+        this.restfulClient = think.service('restfulClient');
+    }
 
 	/**
 	 * 反向代理请求
@@ -21,86 +21,50 @@ module.exports = class extends think.Service{
 
         if(ctx.isGet){
 
-            return await this.fetch(targetHost)
-                .then(res => res.json())
-				.catch((e) => {
-            		return e;
-				});
+           return await this.restfulClient.get(targetHost);
 
-		}else if( ctx.isPost){
+		}else if(ctx.isPost){
 
 			if(ctx.is('application/json','text/plain')){
-                return await this.fetch(targetHost, {
-                    method: 'POST',
-                    body:    JSON.stringify(ctx.post()),
-                    headers: { 'Content-Type': ctx.headers['content-type'] },
-                })
-                    .then(res => res.json())
-                    .catch((e) => {
-                        return e;
-                    });
 
+			    return this.restfulClient.postJson(targetHost,ctx.post());
 
             }else if(ctx.is('application/x-www-form-urlencoded')){
-                const params = new URLSearchParams();
+
+                return this.restfulClient.post(targetHost,ctx.post());
+
+            }
+			else if(ctx.is('multipart/form-data')){
+                let params = {};
+                const fileKeys = Object.keys(ctx.file());
+                //加载file参数
+                fileKeys.map((fieldName) => {
+                    params[fieldName] = ctx.file(fieldName).path;
+                });
 
                 //加载post参数
                 Object.keys(ctx.post()).map((fieldName) => {
-                    params.append(fieldName,ctx.post(fieldName));
+                    params[fieldName] = ctx.post(fieldName);
                 });
 
-				return await this.fetch(targetHost, {
-					method: 'POST',
-					body: params,
-					headers: { 'Content-Type': ctx.headers['content-type'] }
-				})
-                    .then(res =>res.json())
-                    .catch((e) => {
-                        return e;
-                    });
-            }
-			//可能存在文件上传
-			else if(ctx.is('multipart/form-data')){
+                //TODO 注意：这是为了ETL(Apex)上传ETL应用包做的特殊处理
+                if(targetHost.indexOf('/ws/v2/appPackages') !== -1){
+                    return await this.restfulClient.uploadBinary(targetHost,ctx.file()[fileKeys[0]].path);
+                }
 
-                /*const form = new FormData();
-
-				//加载文件参数
-                Object.keys(ctx.file()).map((fieldName) => {
-                	form.append(fieldName,createReadStream(ctx.file(fieldName).path));
-				});
-
-				//加载post参数
-				Object.keys(ctx.post()).map((fieldName) => {
-                	form.append(fieldName,ctx.post(fieldName));
-				});
-
-                return await this.fetch(targetHost, { method: 'POST', body: form, headers: form.getHeaders() })
-                    .then(res => res.json())
-                    .catch((e) => {
-                        return e;
-                    });*/
-
-                const fileNames = Object.keys(ctx.file())
-
-                return await axios({
-                    method: 'post',
-                    url:targetHost,
-                    headers: {
-                        "Content-Type": 'application/java-archive'
-                    },
-                    data: createReadStream(ctx.file(fileNames[0]).path)
-                }).then((resp) => {
-                    console.log(" upload success ")
-                }, (resp) => {
-                    console.log(resp)
-                })
-
-                return  111;
+                return await this.restfulClient.upload(targetHost,params);
 
             }
+		}else if(ctx.method === 'DELETE'){
 
-		}
+            return await this.restfulClient.del(targetHost,ctx.post(),{
+                "Content-Type":ctx.headers['content-type']
+            });
 
-
+        }else if(ctx.method === 'PUT'){
+            return await this.restfulClient.put(targetHost,ctx.post(),{
+                "Content-Type":ctx.headers['content-type']
+            });
+        }
 	}
 }
